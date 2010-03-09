@@ -1,0 +1,13 @@
+- remote_form_for(@contact, :url => '/admin/contacts', :html => {:method => :post, :onsubmit => "$('contact_submit').disabled = true"} ) do |f|
+  = link_to_close new_admin_contact_path
+  = hidden_field_tag "opportunity", "#{@opportunity.id if @opportunity}"
+  = f.hidden_field :user_id
+  = f.error_messages
+  = render :partial => "admin/contacts/top_section", :locals => { :f => f }
+  = render :partial => "admin/contacts/extra",       :locals => { :f => f }
+  = render :partial => "admin/contacts/web",         :locals => { :f => f }
+  = render :partial => "admin/contacts/permissions", :locals => { :f => f }
+  .buttonbar
+    = f.submit "Create Contact", :onclick => %/$("account_assigned_to").value = $F("contact_assigned_to"); if ($("account_id").visible()) { $("account_id").enable(); }/
+    or
+    = link_to_cancel new_admin_contact_path

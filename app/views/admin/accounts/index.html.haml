@@ -1,0 +1,18 @@
+= styles_for :account
+
+.title_tools
+  = link_to_inline(:create_account, new_admin_account_path) << " | "
+  = link_to_inline(:options, "/admin/accounts/options")
+
+.title
+  %span#create_account_title Accounts
+  = image_tag("loading.gif", :size => "16x16", :id => "loading", :style => "display: none;")
+.remote#options{ hidden }
+.remote#create_account{ hidden }
+
+.list#accounts
+  - unless @accounts.empty?
+    = render :partial => "account", :collection => @accounts
+  - else
+    = render :partial => "admin/common/empty"
+#paginate= render :partial => "admin/common/paginate"

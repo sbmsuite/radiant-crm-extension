@@ -1,0 +1,27 @@
+= styles_for :task
+
+#confirm{ hidden }
+.title_tools#menu
+  - unless %w(converted rejected).include?(@lead.status)
+    = link_to_inline(:convert_lead, convert_admin_lead_path(@lead), :text => "Convert") + " | "
+  = link_to_inline(:edit_lead, edit_admin_lead_path(@lead), :text => "Edit") + " | "
+  - if @lead.status != "rejected"
+    = link_to_function("Reject?", confirm_reject(@lead)) + " | "
+  = link_to_function("Delete?", confirm_delete(@lead))
+.title#title= @lead.full_name
+
+%div#convert_lead{ hidden }
+%div#edit_lead{ hidden }
+
+= render :partial => "admin/common/new_comment", :locals => { :commentable => @lead }
+= render :partial => "admin/common/comment", :collection => @lead.comments
+
+-#-----------------------------------------------------------------------------
+%br
+= inline :create_task, new_admin_task_path, { :class => "subtitle_tools", :related => dom_id(@lead) }
+.subtitle#create_task_title Tasks
+.remote#create_task{ hidden }
+.log#tasks
+  = render :partial => "admin/common/tasks"
+
+= hook(:show_lead_bottom, self)

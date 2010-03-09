@@ -1,0 +1,34 @@
+.crm_body {
+  background-color: #ccc;
+}
+
+.crm_content {
+  background-color: #fff;
+  margin: 10px 10px 10px 0;
+
+  -moz-border-radius-bottomleft:4px;
+  -moz-border-radius-bottomright:4px;
+  -moz-border-radius-topleft:4px;
+  -moz-border-radius-topright:4px;
+}
+
+.filters {
+  margin: 10px 0 0 10px;
+}
+
+.panel {
+  margin: 10px 0 0 10px;
+}
+
+.on {
+  border: 0;
+  background: wheat none repeat scroll 0 0;
+}
+
+.off {
+  border: 0;
+}
+
+.strip {
+  color: white;
+}

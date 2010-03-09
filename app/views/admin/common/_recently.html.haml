@@ -1,0 +1,7 @@
+- @recent = Activity.for(current_user).recent
+.panel#recently
+  .caption Recent Items
+  - unless @recent.empty?
+    = render :partial => "admin/common/recent", :collection => @recent
+  - else
+    %div There are no recent items to display yet.

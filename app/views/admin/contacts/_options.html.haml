@@ -1,0 +1,12 @@
+%p
+  = link_to_close options_admin_contacts_path
+
+%p
+
+%form
+  = hidden_field_tag "contact[user_id]", @current_user.id
+  = render :partial => "sort_by"
+  = render :partial => "admin/common/per_page"
+  = render :partial => "admin/common/outline"
+  = submit_to_remote(:save, "Save", :url => "#{redraw_admin_contacts_url}", :loading => "$('loading').show()", :complete => "$('loading').hide()")
+%br

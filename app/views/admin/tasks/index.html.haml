@@ -1,0 +1,18 @@
+= styles_for :task
+
+- @page_title = 'Tasks - ' + default_page_title
+
+- if @view == "completed"
+  - buckets = Setting.task_completed
+  .title Completed Tasks
+- else
+  - buckets = Setting.task_bucket
+  = render :partial => "title"
+
+.log#tasks
+  - buckets.each do |value, key|
+    %div{ hidden_if(filtered_out?(@view, key)), :id => "list_#{key}" }
+      %h3{:class => key}= value
+      .bucket{:id => key}= render :partial => @view, :collection => @tasks[key] || [], :locals => { :bucket => key }
+  - if @tasks.values.flatten.blank?
+    = render :partial => "empty"

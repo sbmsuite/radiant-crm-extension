@@ -1,0 +1,5 @@
+- sort_by_menu_items = ["First Name", "Last Name", "Company", "Rating", "Date Created", "Date Updated"]
+- sort_by_menu_items.map! do |item|
+  - [ item.titleize, item.downcase ]
+
+== Sort leads by #{select_tag(:sort_by, options_for_select(sort_by_menu_items))}.

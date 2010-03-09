@@ -1,0 +1,18 @@
+= styles_for :contact
+
+.title_tools
+  = link_to_inline(:create_contact, new_admin_contact_path) << " | "
+  = link_to_inline(:options, options_admin_contacts_path)
+
+.title
+  %span#create_contact_title Contacts
+  = image_tag("loading.gif", :size => "16x16", :id => "loading", :style => "display: none;")
+.remote#options{ hidden }
+.remote#create_contact{ hidden }
+
+.list#contacts
+  - unless @contacts.empty?
+    = render :partial => "contact", :collection => @contacts
+  - else
+    = render :partial => "admin/common/empty"
+#paginate= render :partial => "admin/common/paginate"

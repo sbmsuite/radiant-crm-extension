@@ -1,0 +1,15 @@
+.remote
+  - remote_form_for(@lead, :url => "/admin/leads/#{@lead.id}", :method => :put, :html => {:method => :get, :onsubmit => "$('lead_submit').disabled = true"} ) do |f|
+    = #link_to_close edit_admin_lead_path(@lead)
+    = link_to_close edit_admin_lead_path
+    = f.hidden_field :user_id
+    = f.error_messages
+    = render :partial => "admin/leads/top_section", :locals => { :f => f, :edit => true }
+    = render :partial => "admin/leads/status",      :locals => { :f => f, :edit => true }
+    = render :partial => "admin/leads/contact",     :locals => { :f => f, :edit => true }
+    = render :partial => "admin/leads/web",         :locals => { :f => f, :edit => true }
+    = render :partial => "admin/leads/permissions", :locals => { :f => f, :edit => true }
+    .buttonbar
+      = f.submit "Save Lead"
+      or
+      = link_to_cancel edit_admin_lead_path(@lead)

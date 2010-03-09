@@ -1,0 +1,5 @@
+- outline_menu_items = ["Long", "Brief"]
+- outline_menu_items.map! do |item|
+  - [ item.titleize, item.downcase ]
+
+== using #{select_tag(:outline, options_for_select(outline_menu_items))} format.

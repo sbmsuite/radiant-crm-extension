@@ -1,0 +1,6 @@
+- view ||= controller.controller_name
+- action ||= controller.action_name
+
+= yield(:sidebar)
+= render(:partial => "admin/#{view}/sidebar_#{action}") rescue nil
+= render :partial => "admin/common/recently"

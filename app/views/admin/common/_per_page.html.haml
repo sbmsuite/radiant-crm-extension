@@ -1,0 +1,5 @@
+- per_page_menu_items = [ 10, 20, 30, 50 ]
+- per_page_menu_items.map! do |item|
+  - [ item, item ]
+
+== Show #{select_tag(:per_page, options_for_select(per_page_menu_items))} records per page

@@ -1,0 +1,30 @@
+= styles_for :task, :contact
+
+#confirm{ hidden }
+.title_tools#menu
+  = link_to_inline(:edit_opportunity, edit_admin_opportunity_path(@opportunity), :text => "Edit") + " | "
+  = link_to_function("Delete?", confirm_delete(@opportunity))
+.title#edit_opportunity_title= @opportunity.name
+
+%div#edit_opportunity{ hidden }
+
+= render :partial => "admin/common/new_comment", :locals => { :commentable => @opportunity }
+= render :partial => "admin/common/comment", :collection => @opportunity.comments
+
+-#-----------------------------------------------------------------------------
+%br
+= inline :create_task, new_admin_task_path, { :class => "subtitle_tools", :related => dom_id(@opportunity) }
+.subtitle#create_task_title Tasks
+.remote#create_task{ hidden }
+.log#tasks
+  = render :partial => "admin/common/tasks"
+
+-#-----------------------------------------------------------------------------
+%br
+= inline :create_contact, new_admin_contact_path, { :class => "subtitle_tools", :related => dom_id(@opportunity) }
+.subtitle#create_contact_title Contacts
+.remote#create_contact{ hidden }
+.list#contacts
+  = render :partial => "admin/contacts/contact", :collection => @opportunity.contacts
+
+= hook(:show_opportunity_bottom, self)

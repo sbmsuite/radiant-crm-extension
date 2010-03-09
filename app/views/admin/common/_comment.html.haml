@@ -1,0 +1,6 @@
+.comment[comment]
+  = link_to avatar_for(comment.user, :size => "25x25"), admin_user_path(comment.user)
+  .body
+    = link_to comment.user.full_name, admin_user_path(comment.user)
+    %tt= time_ago(comment.created_at)
+    %dt= simple_format comment.comment

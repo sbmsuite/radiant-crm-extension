@@ -1,0 +1,31 @@
+.remote
+  - remote_form_for(@lead, :url => promote_admin_lead_path(@lead), :method => :put, :html => {:method => :get, :onsubmit => "$('lead_submit').disabled = true"} ) do |f|
+
+    = link_to_close convert_admin_lead_path(@lead)
+    - fields_for(@account) do |a|
+      = a.hidden_field :user_id
+      = a.hidden_field :access
+      = error_messages_for :account, :opportunity
+      .section
+        %small
+          == By converting the lead <b>#{@lead.full_name}</b> will become a contact associated with 
+          the existing or newly created account. Lead status will be automatically set to converted.
+        %table{ :width => 500, :cellpadding => 0, :cellspacing => 0 }
+          %tr
+            %td{ :valign => :top }
+              .label.req
+                Account
+                %span#account_selector
+              = collection_select :account, :id, @accounts, :id, :name, { :selected => @account.id || 0 }, { :style => "width:330px; display:none;" }
+              = a.text_field :name, :style => "width:324px; display:none;"
+            %td= spacer
+            %td{ :valign => :top }
+              .label.req Assigned to:
+              = collection_select :account, :assigned_to, @users, :id, :full_name, { :include_blank => "Myself" }, { :style => "width:160px" }
+    = render :partial => "admin/leads/opportunity"
+    = render :partial => "admin/leads/convert_permissions"
+    .buttonbar
+      = f.submit "Convert Lead"
+      or
+      = link_to_cancel convert_admin_lead_path(@lead)
+  

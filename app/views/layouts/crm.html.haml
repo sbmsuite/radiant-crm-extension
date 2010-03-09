@@ -1,0 +1,80 @@
+!!!
+%html{:lang=>"en-US"}
+  %head
+    %meta{:charset=>"utf-8"}/
+    %link{:rel=>"icon", :type=>"image/png", :href=>"http://www.sbmsuite.com/images/favicon.png"}
+    %title= @page_title || default_page_title
+
+    // Add the CRM styles
+    - @stylesheets << 'grids'
+    - @stylesheets << 'crm/screen'
+    - @stylesheets << 'crm/facebox.css'
+    - @stylesheets << 'crm/colors'
+    - @stylesheets << 'crm'
+    - @stylesheets << 'crm/overrides'
+
+    - @stylesheets.uniq.each do |stylesheet|
+      = stylesheet_link_tag stylesheet
+
+
+    // Add the CRM javascripts
+    - @javascripts << 'facebox'
+    - @javascripts << 'crm_application'
+    - @javascripts << 'crm_classes'
+
+    /[if lt IE 7]
+      = javascript_include_tag 'admin/pngfix'
+    - @javascripts.uniq.each do |javascript|
+      = javascript_include_tag javascript
+    - if @content_for_page_scripts
+      = javascript_tag @content_for_page_scripts
+    - if @content_for_page_css
+      %style{:type => "text/css"}= @content_for_page_css
+    = yield :meta
+  = #%body{:class=>body_classes.join(" ")}
+  %body{:class=>'crm_body'}
+    #page
+      #header
+        - if logged_in?
+          #site_links
+            = %{Logged in as: #{link_to h(current_user.name), edit_admin_preferences_path, :class => 'logged_in_name'} &nbsp; (#{link_to "Logout", logout_path, :class => 'logout_link'})}
+            &nbsp;
+            = link_to "Support", "http://support.sbmsuite.com"
+            = link_to "View Site", root_path, :id=>"view_site"
+          #logo
+            <img src="/images/logo.png">
+          %ul#navigation
+            - nav_tabs.each do |tab|
+              - if tab.visible?(current_user)
+                %li{:class=>('current' if current_tab?(tab))}
+                  %a{:href=>(tab.first.url if tab.first)}
+                    = tab.proper_name
+                  - if current_tab?(tab)
+                    %ul#nav_sub
+                      - tab.each do |sub_item|
+                        - if sub_item.visible?(current_user)
+                          %li
+                            %a{:href => sub_item.url, :class => current_item?(sub_item) ? 'current' : ''}>
+                              %span
+                                = sub_item.proper_name
+          #header_bottom
+            %div
+      #main
+        - if flash[:notice]
+          #notice
+            %p= flash[:notice]
+        - if flash[:error]
+          #error
+            %p= flash[:error]
+
+        .yui-gf
+          .yui-u.first.sidebar{:id => "sidebar"}
+            = render :partial => "layouts/sidebar"
+          .yui-u
+            #content.crm_content
+              = find_and_preserve(yield)
+    
+
+      - if @content_for_popups
+        #popups
+          = yield :popups

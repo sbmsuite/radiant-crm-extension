@@ -1,0 +1,38 @@
+= styles_for :task, :contact, :opportunity
+
+#confirm{ hidden }
+.title_tools#menu
+  = link_to_inline(:edit_account, edit_admin_account_path(@account), :text => "Edit") + " | "
+  = link_to_function("Delete?", confirm_delete(@account))
+.title#edit_account_title= @account.name
+
+%div#edit_account{ hidden }
+
+= render :partial => "admin/common/new_comment", :locals => { :commentable => @account }
+= render :partial => "admin/common/comment", :collection => @account.comments
+
+-#-----------------------------------------------------------------------------
+%br
+= inline :create_task, new_admin_task_path, { :class => "subtitle_tools", :related => dom_id(@account) }
+.subtitle#create_task_title Tasks
+.remote#create_task{ hidden }
+.log#tasks
+  = render :partial => "admin/common/tasks"
+
+-#-----------------------------------------------------------------------------
+%br
+= inline :create_contact, new_admin_contact_path, { :class => "subtitle_tools", :related => dom_id(@account) }
+.subtitle#create_contact_title Contacts
+.remote#create_contact{ hidden }
+.list#contacts
+  = render :partial => "admin/contacts/contact", :collection => @account.contacts
+
+-#-----------------------------------------------------------------------------
+%br
+= inline :create_opportunity, new_admin_opportunity_path, { :class => "subtitle_tools", :related => dom_id(@account) }
+.subtitle#create_opportunity_title Opportunities
+.remote#create_opportunity{ hidden }
+.list#opportunities
+  = render :partial => "admin/opportunities/opportunity", :collection => @account.opportunities
+
+= hook(:show_account_bottom, self)

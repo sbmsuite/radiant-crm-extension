@@ -1,0 +1,13 @@
+.remote
+  - remote_form_for(@campaign, :url => "/admin/campaigns/#{@campaign.id}", :method => :put, :html => {:method => :get, :onsubmit => "$('campaign_submit').disabled = true"} ) do |f|
+    = #link_to_close "/admin/campaigns/#{@controller.object_id}/edit"
+    = link_to_close edit_admin_campaign_path
+    = f.hidden_field :user_id
+    = f.error_messages
+    = render :partial => "admin/campaigns/top_section", :locals => { :f => f, :edit => true }
+    = render :partial => "admin/campaigns/objectives",  :locals => { :f => f, :edit => true }
+    = render :partial => "admin/campaigns/permissions", :locals => { :f => f, :edit => true }
+    .buttonbar
+      = f.submit "Save Campaign"
+      or
+      = link_to_cancel edit_admin_campaign_path(@campaign)

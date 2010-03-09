@@ -1,0 +1,13 @@
+.remote
+  - remote_form_for(@account, :url => "/admin/accounts/#{@account.id}", :method => :put, :html => {:method => :get, :onsubmit => "$('account_submit').disabled = true"} ) do |f|
+    = link_to_close edit_admin_account_path(@account)
+    = #link_to_close edit_admin_account_path
+    = f.hidden_field :user_id
+    = f.error_messages
+    = render :partial => "admin/accounts/top_section",  :locals => { :f => f, :edit => true }
+    = render :partial => "admin/accounts/contact_info", :locals => { :f => f, :edit => true }
+    = render :partial => "admin/accounts/permissions",  :locals => { :f => f, :edit => true }
+    .buttonbar
+      = f.submit "Save Account"
+      or 
+      = link_to_cancel edit_admin_account_path(@account)

@@ -1,0 +1,48 @@
+.panel#summary
+  %span{:style => "float:right"}= gravatar_for(@lead, :size => "50x50")
+  %h4= @lead.full_name
+  - if !@lead.title.blank? && !@lead.company.blank?
+    %div== #{@lead.title} at #{@lead.company}
+  - else
+    %div= @lead.title unless @lead.title.blank?
+    %div= @lead.company unless @lead.company.blank?
+
+  %div= @lead.address.n2br if @lead.address
+
+  %div
+    - if @lead.phone
+      == Phone: <b>#{@lead.do_not_call ? content_tag(:strike, @lead.phone) : @lead.phone}</b><br />
+    - if @lead.mobile
+      == Mobile: <b>#{@lead.do_not_call ? content_tag(:strike, @lead.mobile) : @lead.mobile}</b><br />
+    - if @lead.email
+      == Email: <b>#{link_to(@lead.email, "mailto:" + @lead.email)}</b><br />
+    - if @lead.alt_email
+      == Alt: <b>#{link_to(@lead.alt_email, "mailto:" + @lead.alt_email)}</b><br />
+  = web_presence_icons(@lead)
+
+  .caption Lead Summary
+  %li
+    %dt#lead_status= @lead.status.blank? ? "N/A" : Setting.lead_status[@lead.status.to_sym]
+    %tt Status:
+  %li
+    %dt= @lead.source.blank? ? "N/A" : Setting.lead_source[@lead.source.to_sym]
+    %tt Source:
+  %li
+    %span{:style => "float:right;"}= stars_for(@lead)
+    %tt Rating:
+  %li
+    %dt= @lead.referred_by ? truncate(@lead.referred_by, :length => 16) : "N/A"
+    %tt Referred by:
+  %li
+    %dt= truncate((@lead.assigned_to ? @lead.assignee.full_name : @lead.user.full_name), :length => 16)
+    %tt Assigned to:
+  %li.last
+    %dt
+      - if @lead.campaign
+        = link_to(truncate(@lead.campaign.name, :length => 16), "/admin/campaigns/#{@lead.campaign.id}", :title => @lead.campaign.name)
+      - else
+        N/A
+    %tt Campaign:
+
+  = hook(:show_lead_sidebar_bottom, self, :lead => @lead)
+

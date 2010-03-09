@@ -1,0 +1,148 @@
+/* Strip Colors
+#30c891
+
+#b3349d
+
+#ba951f
+
+#d26976
+
+#2a73b4
+
+#b7c441
+
+#caa823
+
+#693bb0
+
+#d37447f
+
+#48cfc8
+
+#2ad5b9
+
+#44de22
+
+#3084d0
+
+#008000
+
+*/
+
+/* Task  Colors */
+
+.lunch {
+  background: #008000 none repeat scroll 0 0;
+}
+
+.money {
+  background: #3084d0 none repeat scroll 0 0;
+}
+
+.call {
+  background: #44de22 none repeat scroll 0 0;
+}
+
+.email {
+  background: #2ad5b9 none repeat scroll 0 0;
+}
+
+.folowup {
+  background: #48cfc8 none repeat scroll 0 0;
+}
+
+.lunch {
+  background: #d37447f none repeat scroll 0 0;
+}
+
+.meeting {
+  background: #693bb0 none repeat scroll 0 0;
+}
+
+.money {
+  background: #caa823 none repeat scroll 0 0;
+}
+
+.presentation {
+  background: #b7c441 none repeat scroll 0 0;
+}
+
+.trip {
+  background: #2a73b4 none repeat scroll 0 0;
+}
+
+/* Campaign Colors */
+
+.planned {
+  background: #30c891 none repeat scroll 0 0;
+}
+
+.started {
+  background: #b3349d none repeat scroll 0 0;
+}
+
+.called_off  {
+  background: #ba951f none repeat scroll 0 0;
+}
+
+.completed {
+  background: #d26976 none repeat scroll 0 0;
+}
+
+.on_hold  {
+  background: #2a73b4 none repeat scroll 0 0;
+}
+
+/* Lead Colors */
+
+.new {
+  background: #008000 none repeat scroll 0 0;
+}
+
+.contacted {
+  background: #3084d0 none repeat scroll 0 0;
+}
+
+.converted  {
+  background: #44de22 none repeat scroll 0 0;
+}
+
+.rejected  {
+  background: #2ad5b9 none repeat scroll 0 0;
+}
+
+.prospecting  {
+  background: #48cfc8 none repeat scroll 0 0;
+}
+
+.qualification  {
+  background: #d37447 none repeat scroll 0 0;
+}
+
+.analysis  {
+  background: #693bb0 none repeat scroll 0 0;
+}
+
+.presentation  {
+  background: #caa823 none repeat scroll 0 0;
+}
+
+.proposal  {
+  background: #b7c441 none repeat scroll 0 0;
+}
+
+.negotiation  {
+  background: #2a73b4 none repeat scroll 0 0;
+}
+
+.final_review  {
+  background: #d26976 none repeat scroll 0 0;
+}
+
+.won  {
+  background: #ba951f none repeat scroll 0 0;
+}
+
+.lost  {
+  background: #b3349d none repeat scroll 0 0;
+} 

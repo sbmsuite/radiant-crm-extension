@@ -1,0 +1,19 @@
+.remote
+  - remote_form_for(@task, :url => "/admin/tasks/#{@task.id}", :method => :put, :html => {:method => :get, :onsubmit => "$('task_submit').disabled = true"} ) do |f|
+
+    = link_to_close edit_admin_task_path + "?cancel=true"
+    = hidden_field_tag :view, @view
+    = hidden_field_tag "task[asset_id]", "#{@asset.id if @asset}"
+    = hidden_field_tag "task[asset_type]", "#{@asset.class if @asset}"
+    = render :partial => "admin/tasks/top_section", :locals => { :f => f }
+    .buttonbar
+      = f.submit "Save Task"
+      or
+      = link_to_cancel edit_admin_task_path + "?cancel=true"
+      or move to
+      - [ "ASAP", "Today", "Tomorrow", "This week", "Next week", "Later" ].each do |day|
+        = link_to(day, "#", :onclick => %Q/crm.reschedule_task(#{@task.id}, "due_#{day.downcase.sub(" ", "_")}")/)
+        = " | " if day != "Later"
+
+
+

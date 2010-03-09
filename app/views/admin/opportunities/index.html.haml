@@ -1,0 +1,18 @@
+= styles_for :opportunity
+
+.title_tools
+  = link_to_inline(:create_opportunity, new_admin_opportunity_path) << " | "
+  = link_to_inline(:options, options_admin_opportunities_path)
+
+.title
+  %span#create_opportunity_title Opportunities
+  = image_tag("loading.gif", :size => "16x16", :id => "loading", :style => "display: none;")
+.remote#options{ hidden }
+.remote#create_opportunity{ hidden }
+
+.list#opportunities
+  - unless @opportunities.empty?
+    = render :partial => "opportunity", :collection => @opportunities
+  - else
+    = render :partial => "admin/common/empty"
+#paginate= render :partial => "admin/common/paginate"

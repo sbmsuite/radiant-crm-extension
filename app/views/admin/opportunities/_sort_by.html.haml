@@ -1,0 +1,5 @@
+- sort_by_menu_items = ["Name", "Amount", "Weighted Amount", "Probability", "Closing Date", "Date Created", "Date Updated"]
+- sort_by_menu_items.map! do |item|
+  - [ item.titleize, item.downcase ]
+
+== Sort opportunities by #{select_tag(:sort_by, options_for_select(sort_by_menu_items))}.

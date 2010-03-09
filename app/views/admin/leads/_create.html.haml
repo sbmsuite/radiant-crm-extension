@@ -1,0 +1,14 @@
+- remote_form_for(@lead, :url => '/admin/leads', :html => {:method => :post, :onsubmit => "$('lead_submit').disabled = true"} ) do |f|
+  = link_to_close new_admin_lead_path
+  = hidden_field_tag "campaign", "#{@campaign.id if @campaign}"
+  = hidden_field_tag "lead[user_id]", @current_user.id
+  = f.error_messages
+  = render :partial => "admin/leads/top_section", :locals => { :f => f }
+  = render :partial => "admin/leads/status",      :locals => { :f => f }
+  = render :partial => "admin/leads/contact",     :locals => { :f => f }
+  = render :partial => "admin/leads/web",         :locals => { :f => f }
+  = render :partial => "admin/leads/permissions", :locals => { :f => f }
+  .buttonbar
+    = f.submit "Create Lead"
+    or
+    = link_to_cancel new_admin_lead_path
