@@ -1,3 +1,13 @@
-= Crm
+= Description
+This is a port of the FatFreeCRM to Radiant. This extension assumes you are using vhost_extension. If you are using Vhost then crm will automatically scope for each site on your system. 
 
-Description goes here
+If you are just hosting a single site using Radiant then you will need to fork this extension and remove all the multi site support code. There's not that much. 
+
+I'll be happy to work on this extension some more and make it support both multi_site, vhost, and single sites if I can get enough donations. I'm already too busy so I'll need some proper funding.
+
+This extension was designed to be used with vhost_extension. If your using vhost extension then you can import leads from your web forms directly into the CRM using the LeadsController.
+
+
+= Installation
+
+  git clone git://github.com:sbmsuite/radiant-crm-extension.git vendor/extensions/crm
