@@ -10,4 +10,4 @@ This extension was designed to be used with vhost_extension. If your using vhost
 
 = Installation
 
-  git clone git://github.com:sbmsuite/radiant-crm-extension.git vendor/extensions/crm
+  git clone git://github.com/sbmsuite/radiant-crm-extension.git vendor/extensions/crm
