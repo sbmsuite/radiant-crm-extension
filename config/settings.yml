@@ -1,0 +1,142 @@
+# Fat Free CRM
+# Copyright (C) 2008-2009 by Michael Dvorkin
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http:#www.gnu.org/licenses/>.
+#------------------------------------------------------------------------------
+
+# Default application settings to be loaded during installation:
+#
+#   rake crm:settings:load
+#
+:tabs: [
+  { :active : true,  :text : "Dashboard",     :url : { :controller : "/"              } },
+  { :active : false, :text : "Tasks",         :url : { :controller : "tasks"          } },
+  { :active : false, :text : "Campaigns",     :url : { :controller : "campaigns"      } },
+  { :active : false, :text : "Leads",         :url : { :controller : "leads"          } },
+  { :active : false, :text : "Accounts",      :url : { :controller : "accounts"       } },
+  { :active : false, :text : "Contacts",      :url : { :controller : "contacts"       } },
+  { :active : false, :text : "Opportunities", :url : { :controller : "opportunities"  } }
+]
+
+:admin_tabs: [
+  { :active : true,  :text : "Users",         :url : { :controller : "admin/users"    } },
+  { :active : true,  :text : "Settings",      :url : { :controller : "admin/settings" } },
+  { :active : true,  :text : "Plugins",       :url : { :controller : "admin/plugins"  } }
+]
+
+# The following setting controls user signup. Possible values are:
+#   :allowed        -- users can sign up and use the system once they have registered.
+#   :needs_approval -- users can sign up but must be approved before they can use the system.
+#   :not_allowed    -- users can only be added by system administrator. This is the default.
+
+:user_signup: :not_allowed
+
+campaign_status:
+  :planned       : Planned
+  :started       : Started
+  :completed     : Completed
+  :on_hold       : On Hold
+  :called_off    : Called Off
+
+campaign_status_color:
+  :planned       : palegreen
+  :started       : paleturquoise
+  :completed     : bisque
+  :on_hold       : pink
+  :called_off    : thistle
+
+lead_status:
+  :new           : New
+  :contacted     : Contacted
+  :converted     : Converted
+  :rejected      : Rejected
+
+lead_status_color:
+  :new           : palegreen
+  :contacted     : paleturquoise
+  :converted     : bisque
+  :rejected      : thistle
+
+lead_source:
+  :campaign      : Campaign
+  :cold_call     : Cold Call
+  :conference    : Conference
+  :online        : Online Marketing
+  :referral      : Referral
+  :self          : Self Generated
+  :web           : Web Site
+  :word_of_mouth : Word of Mouth
+  :other         : Other
+
+# Use array of hashes for now to preserve sort order. For Ruby 1.9 or later
+# we can use regular hash since its insertion order will be preserved.
+opportunity_stage: [
+  [ "Prospecting",  :prospecting  ],
+  [ "Analysis",     :analysis     ],
+  [ "Presentation", :presentation ],
+  [ "Proposal",     :proposal     ],
+  [ "Negotiation",  :negotiation  ],
+  [ "Final Review", :final_review ],
+  [ "Closed/Won",   :won          ],
+  [ "Closed/Lost",  :lost         ]
+]
+
+opportunity_stage_color:
+  :prospecting   : lavender
+  :qualification : paleturquoise
+  :analysis      : mistyrose
+  :presentation  : wheat
+  :proposal      : thistle
+  :negotiation   : skyblue
+  :final_review  : aquamarine
+  :won           : lightgreen
+  :lost          : pink
+
+task_category:
+  :call          : Call
+  :email         : Email
+  :folowup       : Follow-up
+  :lunch         : Lunch
+  :meeting       : Meeting
+  :money         : Money
+  :presentation  : Presentation
+  :trip          : Trip
+
+task_category_color:
+  :call          : lavender
+  :email         : paleturquoise
+  :folowup       : mistyrose
+  :lunch         : wheat
+  :meeting       : thistle
+  :money         : lightgreen
+  :presentation  : aquamarine
+  :trip          : skyblue
+
+task_bucket: [
+  [ "Overdue" ,            :overdue       ],
+  [ "As Soon As Possible", :due_asap      ],
+  [ "Today",               :due_today     ],
+  [ "Tomorrow",            :due_tomorrow  ],
+  [ "This Week",           :due_this_week ],
+  [ "Next Week",           :due_next_week ],
+  [ "Sometime Later",      :due_later     ]
+]
+
+task_completed: [
+  [ "Today",      :completed_today      ],
+  [ "Yesterday",  :completed_yesterday  ],
+  [ "Last week",  :completed_last_week  ],
+  [ "This month", :completed_this_month ],
+  [ "Last month", :completed_last_month ]
+]
