@@ -105,16 +105,16 @@ class CrmExtension < Radiant::Extension
   end
   
   def activate
-    admin.nav << Radiant::AdminUI::NavTab.new(:crm, "CRM", [:crm, :free_crm])
-    #admin.nav[:crm] << admin.nav_item(:dashboard, "Dashboard", "/admin/home")
-    admin.nav[:crm] << admin.nav_item(:tasks, "Tasks", "/admin/tasks")
-    admin.nav[:crm] << admin.nav_item(:campaigns, "Campaigns", "/admin/campaigns")
-    admin.nav[:crm] << admin.nav_item(:leads, "Leads", "/admin/leads")
-    admin.nav[:crm] << admin.nav_item(:accounts, "Accounts", "/admin/accounts")
-    admin.nav[:crm] << admin.nav_item(:contacts, "Contacts", "/admin/contacts")
-    admin.nav[:crm] << admin.nav_item(:opportunites, "Opportunities", "/admin/opportunities")
-  
-
+    tab 'CRM' do
+      #add_item "Dashboard", "/admin/home"
+      add_item "Tasks", "/admin/tasks"
+      add_item "Campaigns", "/admin/campaigns"
+      add_item "Leads", "/admin/leads"
+      add_item "Accounts", "/admin/accounts"
+      add_item "Contacts", "/admin/contacts"
+      add_item "Opportunities", "/admin/opportunities"
+    end
+    
     modify_classes
   end
 

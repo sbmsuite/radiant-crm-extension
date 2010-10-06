@@ -7,7 +7,22 @@ I'll be happy to work on this extension some more and make it support both multi
 
 This extension was designed to be used with vhost_extension. If your using vhost extension then you can import leads from your web forms directly into the CRM using the LeadsController.
 
+= Dependencies
+
+The following need to be available in order for this extension to work properly:
+
+* simple_column_search Rubygem
+* acts_as_paranoid plugin (Using a later version of this may require that you change all "acts_as_paranoid" refs. to "include ActiveRecord::Paranoia".  Also, the line "require 'active_record/dynamic_scope'" may need to be added to plugins/acts_as_paranoid/init.rb).
+* acts_as_commentable plugin
+* Prototype Javascript library (must be placed before facebox JS in CRM layout)
+* Effects Javascript library (must be placed before facebox JS in CRM layout)
+* settings.yml needs to be present in your RAILS_ROOT/config or RADIANT_ROOT/config directory
+
+(Note: The DB migrations for the extension handle the required columns for acts_as_paranoid and the required "comments" table for acts_as_commentable.)
 
 = Installation
 
   git clone git://github.com/sbmsuite/radiant-crm-extension.git vendor/extensions/crm
+  rake radiant:extensions:crm:update
+  rake radiant:extensions:crm:migrate
+  rake crm:settings:load

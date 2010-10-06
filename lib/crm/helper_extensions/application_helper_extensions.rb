@@ -61,7 +61,7 @@ module ApplicationHelper
   #----------------------------------------------------------------------------
   def link_to_inline(id, url, options = {})
     text = options[:text] || id.to_s.titleize
-    text = (arrow_for(id) << "&nbsp;" << text) unless options[:plain]
+    text = (arrow_for(id) << " #{text}") unless options[:plain]
     related = (options[:related] ? ", related: '#{options[:related]}'" : "")
 
     link_to_remote(text,
