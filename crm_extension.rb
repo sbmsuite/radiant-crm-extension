@@ -32,8 +32,8 @@ require_dependency "#{File.expand_path(File.dirname(__FILE__))}/lib/crm/controll
 
 class CrmExtension < Radiant::Extension
   version "1.0"
-  description "Describe your extension here"
-  url "http://yourwebsite.com/crm"
+  description "Add a customer relationship managr to radiant"
+  url "https://github.com/sbmsuite/radiant-crm-extension.git"
   
    define_routes do |map|
 
@@ -105,6 +105,8 @@ class CrmExtension < Radiant::Extension
   end
   
   def activate
+    # If you are using Radiant > 0.9.0 RC1 you need to update the following code to the new tab interface.
+  
     admin.nav << Radiant::AdminUI::NavTab.new(:crm, "CRM", [:crm, :free_crm])
     #admin.nav[:crm] << admin.nav_item(:dashboard, "Dashboard", "/admin/home")
     admin.nav[:crm] << admin.nav_item(:tasks, "Tasks", "/admin/tasks")
@@ -113,7 +115,6 @@ class CrmExtension < Radiant::Extension
     admin.nav[:crm] << admin.nav_item(:accounts, "Accounts", "/admin/accounts")
     admin.nav[:crm] << admin.nav_item(:contacts, "Contacts", "/admin/contacts")
     admin.nav[:crm] << admin.nav_item(:opportunites, "Opportunities", "/admin/opportunities")
-  
 
     modify_classes
   end
